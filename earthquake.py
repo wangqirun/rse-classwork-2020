@@ -1,8 +1,8 @@
 import requests
+import json
 
-
-
-quakes = requests.get("http://earthquake.usgs.gov/fdsnws/event/1/query.geojson",
+if __name__ == "__main__":
+quakes= requests.get("http://earthquake.usgs.gov/fdsnws/event/1/query.geojson",
                       params={
                           'starttime': "2000-01-01",
                           "maxlatitude": "58.723",
@@ -15,13 +15,6 @@ quakes = requests.get("http://earthquake.usgs.gov/fdsnws/event/1/query.geojson",
                       )
 
 
-json_data = json.loads(quakes.text)
-    with open("quakes.txt", "w") as f:
-        json.dump(json_data,f, indent = 4)
+print(quakes.text[0:100])
 
 
-
-
-quake_data = json_data['features']
-    max_magnitude = max([quake['properties']['mag'] for quake in quake_data])
-    coords = [quake['geometry']['coordinates'] for quake in quake_data if quake['properties']['mag'] == max_magnitude]

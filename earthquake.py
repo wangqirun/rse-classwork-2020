@@ -2,7 +2,7 @@ import requests
 import json
 
 if __name__ == "__main__":
-quakes= requests.get("http://earthquake.usgs.gov/fdsnws/event/1/query.geojson",
+     quakes= requests.get("http://earthquake.usgs.gov/fdsnws/event/1/query.geojson",
                       params={
                           'starttime': "2000-01-01",
                           "maxlatitude": "58.723",
@@ -13,6 +13,8 @@ quakes= requests.get("http://earthquake.usgs.gov/fdsnws/event/1/query.geojson",
                           "endtime": "2018-10-11",
                           "orderby": "time-asc"}
                       )
+
+json_data = json.loads(quakes.text)
 
 
 print(quakes.text[0:100])

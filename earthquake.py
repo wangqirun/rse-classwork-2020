@@ -14,9 +14,20 @@ if __name__ == "__main__":
                           "orderby": "time-asc"}
                       )
 
-json_data = json.loads(quakes.text)
+quakes_data = json.loads(quakes.text)
+max_magnitudes = 0
+coords = []
+
+for quake in quakes_data['features']:
+    if quake['properties']['mag'] > max_magnitudes:
+        max_magnitude = quake['properties']['mag']
+        coords = [quake['geometry']['coordinates']]
+    elif quake['properties']['mag'] == max_magnitude:
+        coords.append(quake['geometry']['coordinates'])
+
+print("The maximum magnitude is {max_magnitude} "f"and it occured at coordinates {coords}.")
 
 
-print(quakes.text[0:100])
+
 
 

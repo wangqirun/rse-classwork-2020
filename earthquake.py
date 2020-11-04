@@ -31,3 +31,4 @@ print("The maximum magnitude is {max_magnitude} "f"and it occured at coordinates
 
 
 
+
